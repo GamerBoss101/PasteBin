@@ -2,23 +2,26 @@
     // @ts-nocheck
     import { page } from '$app/stores';
     import { onMount } from "svelte";
-    import Editor from "$lib/js/Editor";
-
-    import ms from 'ms';
-
+    import Editor from "$lib/ts/Editor";
+    
     let startBtn, langSelect;
-    let editorHTML;
+    let editorHTML, editor;
     let lang = "1";
 
     onMount(() => {
-        new Editor({
-            parent: editorHTML
+        editor = new Editor({
+            parent: editorHTML,
+            language: lang,
         });
     });
 
     function selectLanguage(event) {
-        lang = event.target.value;
-        console.log(event.target.value);
+        editorHTML.innerHTML = "";
+        lang = event.target.value;        
+        editor = new Editor({
+            parent: editorHTML,
+            language: lang,
+        });
     }
 
     function createBin() {
@@ -28,7 +31,7 @@
 </script>
 
 <div>
-    <div style="margin-top: 50px; margin-bottom:15px;" class="row">
+    <div style="margin-bottom:15px;" class="row bin-bar">
         <div class="col">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                 <button bind:this={startBtn} on:click={createBin} type="button" class="btn btn-success">Create</button>
@@ -46,16 +49,20 @@
             </select>
         </div>
         <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
+        <div class="col">
+            <input type="text" class="text-input" placeholder="Bin Name">
+        </div>
     </div>
     <div style="text-align: left;" bind:this={editorHTML}></div>
 </div>
 
 <style>
+
+    .bin-bar {
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+    }
+
     .lang-select {
         background-color: var(--bg-color-dark);
         color: white !important;
@@ -64,6 +71,14 @@
 
     .btn {
         width: 100%;
+    }
+
+    .text-input {
+        background-color: var(--bg-color-dark);
+        color: white !important;
+        border: 2px solid var(--bg-color-light);
+        border-radius: 5px;
+        padding: 5px;
     }
 
 </style>

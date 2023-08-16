@@ -1,7 +1,7 @@
 {
 	"name": "pastebin",
 	"version": "0.0.1",
-    "type": "module",
+	"type": "module",
 	"private": true,
 	"scripts": {
 		"start": "vite build && node ./server/server.js",
@@ -12,7 +12,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
 	},
-    "dependencies": {
+	"dependencies": {
 		"@codemirror/commands": "^6.2.4",
 		"@codemirror/lang-angular": "^0.1.2",
 		"@codemirror/lang-cpp": "^6.0.2",
@@ -29,6 +29,7 @@
 		"@codemirror/lang-vue": "^0.1.2",
 		"@codemirror/lang-xml": "^6.0.2",
 		"@codemirror/language": "^6.9.0",
+		"@codemirror/state": "^6.2.1",
 		"@codemirror/theme-one-dark": "^6.1.2",
 		"@codemirror/view": "^6.16.0",
 		"@lezer/highlight": "^1.1.6",

@@ -1,27 +1,38 @@
 <script>
+    import { page } from "$app/stores";
+
     import Editor from "$lib/components/bin/Editor.svelte";
+    import Bins from "$lib/components/bin/Bins.svelte";
 </script>
 
 <div class="container" >
-    <div class="text-center p-4 p-lg-5">
-        <h1>Pastebin</h1>
-        <p>Paste Away!</p>
+    <div class="hero">
+        <img alt="Bin Chan" src="/BinChan.png">
+        <h1 class="slant-txt">Paste Away!</h1>
+    </div>
+    <div>
         <div style="background-color: var(--bg-color-dark);" class="card">
             <div style="align-items: center;" class="card-body">
                 <Editor />
             </div>
         </div>
     </div>
+    { #if $page.data.id }
+        <Bins user={$page.data} />
+    {/if}
 </div>
 
 <style>
-    h1 {
-        font-size: 65px;
-        margin: 10px;
+    .hero {
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
     }
 
-    p {
-        font-size: 25px;
-        margin: 10px;
+    .slant-txt {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin: 0;
     }
 </style>
