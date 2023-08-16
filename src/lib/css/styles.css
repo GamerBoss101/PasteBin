@@ -1,0 +1,37 @@
+@import url(./global.css);
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    font-family: Montserrat, sans-serif !important;
+}
+
+footer {
+    background-color: var(--bg-color-dark) !important;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    padding: 1px;
+    max-height: 175px;
+}
+
+a {
+    color: var(--text-color) !important;
+}
+
+.container {
+    margin-bottom: 25px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+.col {
+    padding: 8px;
+}
