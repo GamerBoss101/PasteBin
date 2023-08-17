@@ -25,7 +25,7 @@ pnpm install
 - body 
   - `name` : `string`
   - `content` : `string`
-  - `language` : `string`
+  - `language` : `string` (txt/html/css/js/java/php/py/cpp)
 
 ### GET /api/bin/:id
 - headers

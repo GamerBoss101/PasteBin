@@ -12,6 +12,7 @@ import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { php } from "@codemirror/lang-php";
 import { cpp } from "@codemirror/lang-cpp";
+import { java } from "@codemirror/lang-java";
 
 export default class Editor extends EditorView {
     constructor(props) {
@@ -46,6 +47,14 @@ export default class Editor extends EditorView {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         javascript(),
+                    ])
+                });
+                break;
+            }
+            case "java": {
+                this.dispatch({
+                    effects: StateEffect.appendConfig.of([
+                        java(),
                     ])
                 });
                 break;

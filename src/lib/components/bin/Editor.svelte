@@ -90,6 +90,7 @@
                 <option value="html">HTML</option>
                 <option value="css">CSS</option>
                 <option value="js">JavaScript</option>
+                <option value="java">Java</option>
                 <option value="php">PHP</option>
                 <option value="py">Python</option>
                 <option value="cpp">C++</option>
