@@ -117,9 +117,7 @@
                         "apiKey": apikey,
                         "Content-Type": "application/json"
                     }
-                }).then(res => res.json()).then(data => {
-                    console.log(data);
-                });
+                })
                 break;
             }
             default: {

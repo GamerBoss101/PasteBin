@@ -48,9 +48,7 @@
                 language: langSelect.value,
                 content: editor.getCode()
             })
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-        });
+        })
     }
 
     function saveBin() {
@@ -66,9 +64,7 @@
                 language: langSelect.value,
                 content: editor.getCode()
             })
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-        });
+        })
     }
 
 </script>

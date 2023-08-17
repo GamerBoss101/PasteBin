@@ -15,8 +15,7 @@ export const actions = {
         if (allUsers.find(user => user.username === username)) return { error: true, message: 'Username already exists' };
 
         let newUser = await user.create(username, password);
-
-        console.log(newUser);
+        
         if (!newUser) return { error: true, message: 'Error creating user' };
         else return { success: true, message: 'User created' };
     }
