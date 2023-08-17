@@ -8,6 +8,7 @@
     export let apikey: string;
     export let CEditor: any;
 
+    let BIN: any;
     let binName: HTMLDivElement, binIcon: HTMLDivElement, binContent: string, binSelect: HTMLSelectElement;
     let binData: any;
 
@@ -24,7 +25,6 @@
             binName.innerHTML = data.name;
             setLangIcon(data.language);
         });
-
     });
 
     function setLangIcon(language: string) {
@@ -117,7 +117,8 @@
                         "apiKey": apikey,
                         "Content-Type": "application/json"
                     }
-                })
+                });
+                location.reload();
                 break;
             }
             default: {
@@ -130,7 +131,7 @@
 
 </script>
 
-<div class="bin row">
+<div bind:this={BIN} class="bin row">
     <div bind:this={binIcon} class="col"></div>
     <div class="col">
         <p bind:this={binName} class="bin-name"></p>

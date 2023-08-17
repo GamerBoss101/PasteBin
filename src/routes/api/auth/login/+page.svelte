@@ -26,7 +26,7 @@
             </div>
         {/if}
         <div class="text-center card-body">
-            <form method="POST">
+            <form method="POST" action="/api/auth/login">
                 <h1 class="h2 mb-3">Login</h1>
                 <h5>Username</h5>
                 <input name="user" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">

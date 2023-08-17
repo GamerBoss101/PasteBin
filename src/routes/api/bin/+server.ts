@@ -14,7 +14,14 @@ export const POST: RequestHandler = async ({ request }) => {
 
     const { name, language, content } = await request.json();
 
-    if(!name || !language || !content) return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
+    if(!name || !language || !content) {
+        let missing = [];
+        if(!name) missing.push("name");
+        if(!language) missing.push("language");
+        if(!content) missing.push("content");
+        
+        return new Response(JSON.stringify({ message: "Missing required fields", missing }), { status: 400 });
+    }
     const bin = await bins.create(name, language, content);
 
     users.addBin(user._id, bin._id);

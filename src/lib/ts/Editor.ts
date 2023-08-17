@@ -13,10 +13,6 @@ import { css } from "@codemirror/lang-css";
 import { php } from "@codemirror/lang-php";
 import { cpp } from "@codemirror/lang-cpp";
 
-import { xml } from "@codemirror/lang-xml";
-import { markdown } from "@codemirror/lang-markdown";
-import { json } from "@codemirror/lang-json";
-
 export default class Editor extends EditorView {
     constructor(props) {
         super({

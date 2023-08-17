@@ -37,6 +37,7 @@
     }
 
     function createBin() {
+        if(!$page.data.apiKey) return alert("Login to create a bin!");
         fetch("/api/bin", {
             method: "POST",
             headers: {
@@ -48,7 +49,11 @@
                 language: langSelect.value,
                 content: editor.getCode()
             })
-        })
+        }).then(res => res.json()).then(data => {
+            if(data.message) return alert(data.message + "\n\n" + data.missing.join(", "));
+            window.open(`/bin/${data._id}`);
+            location.reload();
+        });
     }
 
     function saveBin() {
@@ -64,7 +69,9 @@
                 language: langSelect.value,
                 content: editor.getCode()
             })
-        })
+        }).then(res => res.json()).then(data => {
+            if(data.message) return alert(data.message + "\n\n" + data.missing.join(", "));
+        });
     }
 
 </script>

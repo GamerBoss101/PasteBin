@@ -28,7 +28,13 @@ export const PUT: RequestHandler = async({ request, params }) => {
 
     const { name, content } = await request.json();
 
-    if(!name || !content) return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
+    if(!name || !content) {
+        let missing = [];
+        if(!name) missing.push("name");
+        if(!content) missing.push("content");
+        
+        return new Response(JSON.stringify({ message: "Missing required fields", missing }), { status: 400 });
+    }
 
     await bins.update(id, name, content);
 
