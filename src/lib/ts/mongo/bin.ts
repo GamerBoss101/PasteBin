@@ -40,24 +40,24 @@ class Bin {
         }
         return result.join('');
     }
-    async create(name: string, language: string, content: string, date: Date): Promise<BinSchema> {
+    async create(name: string, language: string, content: string): Promise<BinSchema> {
         let Id = this.makeId(5);
-        const newUser = await this.model.findByIdAndUpdate(
+        await this.model.findByIdAndUpdate(
             { _id: Id },
-            { _id: Id, name, language, content, date: date },
+            { _id: Id, name, language, content, date: new Date() },
             this.upsert,
         );
-        return newUser;
+        return await this.model.findById(Id);
     }
-    async get(Id: string): Promise<BinSchema[] | BinSchema> {
+    async get(Id: string | null): Promise<BinSchema[] | BinSchema> {
         if(!Id) return await this.model.find();
         return await this.model.findById(Id);
     }
 
-    async update(Id: string, name: string, content: string, date: Date): Promise<BinSchema> {
+    async update(Id: string, name: string, content: string): Promise<BinSchema> {
         return await this.model.findByIdAndUpdate(
             { _id: Id },
-            { _id: Id, name, content, date: date },
+            { _id: Id, name, content, date: new Date() },
             this.upsert,
         );
     }

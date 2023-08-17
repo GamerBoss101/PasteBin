@@ -22,15 +22,15 @@ export default class Editor extends EditorView {
         super({
             parent: props.parent,
             state : EditorState.create({
-                doc: '\n\n\n\n',
+                doc: props.code ? props.code : '\n\n\n\n',
                 extensions: [ basicSetup, keymap.of([indentWithTab]), oneDark],
             })
         });
-        this.setLanguage(props.language);
+        this.setLanguage(props.language ? props.language : "txt");
     }
     public setLanguage(language) {
         switch (language) {
-            case "2": {
+            case "html": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         html(),
@@ -38,7 +38,7 @@ export default class Editor extends EditorView {
                 });
                 break;
             }
-            case "3": {
+            case "css": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         css(),
@@ -46,7 +46,7 @@ export default class Editor extends EditorView {
                 });
                 break;
             }
-            case "4": {
+            case "js": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         javascript(),
@@ -54,7 +54,7 @@ export default class Editor extends EditorView {
                 });
                 break;
             }
-            case "5": {
+            case "php": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         php(),
@@ -62,7 +62,7 @@ export default class Editor extends EditorView {
                 });
                 break;
             }
-            case "6": {
+            case "py": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         python(),
@@ -70,7 +70,7 @@ export default class Editor extends EditorView {
                 });
                 break;
             }
-            case "7": {
+            case "cpp": {
                 this.dispatch({
                     effects: StateEffect.appendConfig.of([
                         cpp(),

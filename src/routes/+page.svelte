@@ -3,6 +3,8 @@
 
     import Editor from "$lib/components/bin/Editor.svelte";
     import Bins from "$lib/components/bin/Bins.svelte";
+
+    let codeEditor;
 </script>
 
 <div class="container" >
@@ -13,12 +15,12 @@
     <div>
         <div style="background-color: var(--bg-color-dark);" class="card">
             <div style="align-items: center;" class="card-body">
-                <Editor />
+                <Editor bind:this={codeEditor} />
             </div>
         </div>
     </div>
     { #if $page.data.id }
-        <Bins user={$page.data} />
+        <Bins user={$page.data} editor={codeEditor} />
     {/if}
 </div>
 

@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     bins: Array
 });
 
-type UserSchema = {
+export type UserSchema = {
     _id: string;
     username: string;
     password: string;
@@ -60,7 +60,7 @@ class User {
         return await this.model.findOne({ username: username });
     }
 
-    async getByApiKey(apiKey: string) {
+    async getByApiKey(apiKey: string | null) {
         return await this.model.findOne({ apiKey: apiKey });
     }
 

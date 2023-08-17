@@ -7,8 +7,7 @@ export async function load({ cookies }) {
     if (cookies.get('authKey', { path: '/' })) {
         user = await users.get(cookies.get('authKey', { path: '/' }));
         user.password = null;
-        console.log(user);
-        return { id: user._id, username: user.username, apiKey: user.apiKey };
+        return { id: user._id, username: user.username, apiKey: user.apiKey, bins: user.bins };
     }
     return { id: null, username: null, apiKey: null };
 }

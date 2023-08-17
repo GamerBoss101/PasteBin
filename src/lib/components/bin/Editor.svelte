@@ -1,31 +1,74 @@
-<script>
-    // @ts-nocheck
-    import { page } from '$app/stores';
-    import { onMount } from "svelte";
-    import Editor from "$lib/ts/Editor";
-    
-    let startBtn, langSelect;
-    let editorHTML, editor;
-    let lang = "1";
+<script lang="ts">
 
-    onMount(() => {
-        editor = new Editor({
+    import { page } from "$app/stores";
+
+    import { onMount } from "svelte";
+
+    import CEditor from "$lib/ts/Editor";
+    
+    let langSelect: HTMLSelectElement, nameInput: HTMLInputElement;
+    let editorHTML: HTMLDivElement, editor: CEditor;
+    let id: string | null;
+
+    export function setEditor(binId: string, name: string, lang: string, code: string) {
+        editorHTML.innerHTML = "";
+        id = binId;
+        nameInput.value = name;
+        langSelect.value = lang;
+        editor = new CEditor({
             parent: editorHTML,
             language: lang,
+            code: code
+        });
+    }
+
+    onMount(() => {
+        editor = new CEditor({
+            parent: editorHTML
         });
     });
 
-    function selectLanguage(event) {
-        editorHTML.innerHTML = "";
-        lang = event.target.value;        
-        editor = new Editor({
+    function selectLanguage(event: any) {
+        editorHTML.innerHTML = "";     
+        editor = new CEditor({
             parent: editorHTML,
-            language: lang,
+            language: event.target.value,
         });
     }
 
     function createBin() {
+        fetch("/api/bin", {
+            method: "POST",
+            headers: {
+                "apiKey": $page.data.apiKey, 
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: nameInput.value,
+                language: langSelect.value,
+                content: editor.getCode()
+            })
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+        });
+    }
 
+    function saveBin() {
+        if(!id) return alert("No bin selected");
+        fetch(`/api/bin/${id}`, {
+            method: "PUT",
+            headers: {
+                "apiKey": $page.data.apiKey, 
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: nameInput.value,
+                language: langSelect.value,
+                content: editor.getCode()
+            })
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+        });
     }
 
 </script>
@@ -34,23 +77,24 @@
     <div style="margin-bottom:15px;" class="row bin-bar">
         <div class="col">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <button bind:this={startBtn} on:click={createBin} type="button" class="btn btn-success">Create</button>
+                <button on:click={createBin} type="button" class="btn btn-primary">Create</button>
+                <button on:click={saveBin} type="button" class="btn btn-success">Save</button>
             </div>
         </div>
         <div class="col">
             <select bind:this={langSelect} on:change={selectLanguage} class="form-select lang-select" aria-label="Default select example">
-                <option selected value="1">Text</option>
-                <option value="2">HTML</option>
-                <option value="3">CSS</option>
-                <option value="4">JavaScript</option>
-                <option value="5">PHP</option>
-                <option value="6">Python</option>
-                <option value="7">Cpp</option>
+                <option selected value="txt">Text</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="js">JavaScript</option>
+                <option value="php">PHP</option>
+                <option value="py">Python</option>
+                <option value="cpp">C++</option>
             </select>
         </div>
         <div class="col"></div>
         <div class="col">
-            <input type="text" class="text-input" placeholder="Bin Name">
+            <input bind:this={nameInput} type="text" class="text-input" placeholder="Bin Name">
         </div>
     </div>
     <div style="text-align: left;" bind:this={editorHTML}></div>

@@ -3,6 +3,7 @@
     import Bin from "./Bin.svelte";
 
     export let user: any;
+    export let editor: any;
 
     function copyToClipboard() {
         navigator.clipboard.writeText(user.apiKey);
@@ -12,9 +13,9 @@
 
 <div style="background-color: var(--bg-color-dark);" class="card">
     <h1 class="card-title">You Bins</h1>
-    <div class="user-info">
-        <div>{user.username}</div>
-        <div>API KEY:
+    <div class="row">
+        <div class="col-sm-2">Username: {user.username}</div>
+        <div class="col">API KEY
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <span  on:click={copyToClipboard} class="apikey">
@@ -24,7 +25,9 @@
         </div>
     </div>
     <div class="card-body">
-        <Bin />
+        { #each user.bins as bin }
+            <Bin id="{bin}" apikey="{user.apiKey}" CEditor={editor} />
+        {/each}
     </div>
 </div>
 
@@ -39,21 +42,16 @@
         text-align: center;
     }
 
-    .user-info {
-        display: grid;
-        grid-template-columns: auto auto 1fr;
-    }
-
-    .user-info > div {
-        padding: 10px;
-    }
-
     .apikey {
         background-color: black;
         color: white;
         padding: 7px;
         cursor: pointer;
         border-radius: 5px;
+    }
+
+    .row > div {
+        padding: 10px;
     }
 
 </style>
