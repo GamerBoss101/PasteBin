@@ -2,7 +2,7 @@
 
     import { onMount } from "svelte";
 
-    import IconIfy from "../layout/IconIfy.svelte";
+    import { setIcon } from "$lib/ts/Editor";
 
     export let id: string;
     export let apikey: string;
@@ -28,80 +28,10 @@
     });
 
     function setLangIcon(language: string) {
-        switch(language) {
-            case "js": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-js-official",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-            case "html": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-html",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-            case "css": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-css",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-            case "php": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-php",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-            case "py": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-python",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-            case "cpp": {
-                new IconIfy({
-                    target: binIcon,
-                    props: {
-                        collection: "vscode-icons",
-                        name: "file-type-cpp2",
-                        width: "50px",
-                        height: "50px"
-                    }
-                });
-                break;
-            }
-        }
+        setIcon({
+            parent: binIcon,
+            lang: language
+        });
     }
 
     function exeCommand() {
@@ -154,10 +84,10 @@
         border-radius: 10px;
         padding: 5px;
         display: grid;
-        grid-template-columns: auto auto 1fr 10% 10%;
+        grid-template-columns: auto auto 1fr auto auto;
         background-color: var(--bg-color);
-        max-height: 80px;
         margin-bottom: 10px;
+        overflow: hidden;
     }
 
     .bin-name {
@@ -188,6 +118,7 @@
         color: white !important;
         border: 2px solid var(--bg-color-light);
         width: 100%;
+        min-width: 100px;
         height: 100%;
         font-size: 16px;
         border-radius: 5px;
@@ -196,6 +127,17 @@
     .bin-btn:hover {
         cursor: pointer;
         background-color: #00723d;
+    }
+
+    @media screen and (max-width: 600px) {
+        .bin-name {
+            font-size: 16px;
+        }
+
+        .bin-select {
+            font-size: 18px;
+            min-width: 85px;
+        }
     }
 
 </style>

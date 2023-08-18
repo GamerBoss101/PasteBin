@@ -30,7 +30,8 @@
     });
 
     async function selectLanguage(event: any) {
-        editorHTML.innerHTML = "";     
+        editorHTML.innerHTML = "";
+        console.log(event.target.value);     
         editor = await CEditor({
             parent: editorHTML,
             language: event.target.value,
@@ -51,7 +52,7 @@
                 content: editor.getCode()
             })
         }).then(res => res.json()).then(data => {
-            if(data.message) return alert(data.message + "\n\n" + data.missing.join(", "));
+            if(data.missing) return alert(data.message + "\n" + data.missing.join(","));
             window.open(`/bin/${data._id}`);
             location.reload();
         });
@@ -71,7 +72,7 @@
                 content: editor.getCode()
             })
         }).then(res => res.json()).then(data => {
-            if(data.message) return alert(data.message + "\n\n" + data.missing.join(", "));
+            if(data.missing) return alert(data.message + "\n" + data.missing.join(","));
         });
     }
 
@@ -95,6 +96,16 @@
                 <option value="php">PHP</option>
                 <option value="py">Python</option>
                 <option value="cpp">C++</option>
+                <option value="rust">Rust</option>
+                <option value="sass">Sass</option>
+                <option value="md">Markdown</option>
+                <option value="json">JSON</option>
+                <option value="xml">XML</option>
+                <option value="sql">SQL</option>
+                <option value="vue">Vue</option>
+                <option value="svelte">Svelte</option>
+                <option value="ang">Angular</option>
+                <option value="graphql">Graphql</option>
             </select>
         </div>
         <div class="col"></div>
@@ -128,6 +139,13 @@
         border: 2px solid var(--bg-color-light);
         border-radius: 5px;
         padding: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .bin-bar {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
     }
 
 </style>

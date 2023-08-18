@@ -12,7 +12,7 @@
 </script>
 
 <div style="background-color: var(--bg-color-dark);" class="card">
-    <h1 class="card-title">You Bins</h1>
+    <h1 class="card-title">Your Bins</h1>
     <div class="row">
         <div class="col-sm-2">Username: {user.username}</div>
         <div class="col">API KEY

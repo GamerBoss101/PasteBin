@@ -6,15 +6,15 @@
 
     import Editor from "$lib/ts/Editor";
 
-    let editorHTML: HTMLDivElement, editor: Editor, binName: string;
+    let editorHTML: HTMLDivElement, editor: any, binName: HTMLHeadElement;
 
     onMount(() => {
         fetch(`/api/bin/${$page.data.binId}`, {
             method: "GET",
         }).then(res => res.json()).then(data => {
-            if(!data.name) return binName = "Not Found";
-            binName = data.name;
-            editor = new Editor({
+            if(!data.name) return binName.innerText = "Not Found";
+            binName.innerText = data.name;
+            editor = Editor({
                 parent: editorHTML,
                 language: data.language,
                 code: data.content
@@ -27,7 +27,8 @@
 
 <div class="container" >
     <div style="background-color: var(--bg-color-dark);" class="card">
-        <h2>{binName}</h2>
+        <!-- svelte-ignore a11y-missing-content -->
+        <h2 bind:this={binName}></h2>
         <div style="align-items: center;" class="card-body">
             <div bind:this={editorHTML}></div>
         </div>
