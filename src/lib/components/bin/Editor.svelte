@@ -7,30 +7,31 @@
     import CEditor from "$lib/ts/Editor";
     
     let langSelect: HTMLSelectElement, nameInput: HTMLInputElement;
-    let editorHTML: HTMLDivElement, editor: CEditor;
+    let editorHTML: HTMLDivElement, editor: any;
     let id: string | null;
 
-    export function setEditor(binId: string, name: string, lang: string, code: string) {
+    export async function setEditor(binId: string, name: string, lang: string, code: string) {
         editorHTML.innerHTML = "";
         id = binId;
         nameInput.value = name;
         langSelect.value = lang;
-        editor = new CEditor({
+        editor = await CEditor({
             parent: editorHTML,
             language: lang,
             code: code
         });
     }
 
-    onMount(() => {
-        editor = new CEditor({
-            parent: editorHTML
+    onMount(async() => {
+        editor = await CEditor({
+            parent: editorHTML,
+            language: "txt",
         });
     });
 
-    function selectLanguage(event: any) {
+    async function selectLanguage(event: any) {
         editorHTML.innerHTML = "";     
-        editor = new CEditor({
+        editor = await CEditor({
             parent: editorHTML,
             language: event.target.value,
         });
