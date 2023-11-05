@@ -47,8 +47,9 @@
                         "apiKey": apikey,
                         "Content-Type": "application/json"
                     }
+                }).then(res => res.json()).then(data => {
+                    location.reload();
                 });
-                location.reload();
                 break;
             }
             default: {
@@ -120,8 +121,9 @@
         width: 100%;
         min-width: 100px;
         height: 100%;
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 5px;
+        font-weight: bold;
     }
 
     .bin-btn:hover {

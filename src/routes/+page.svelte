@@ -2,7 +2,7 @@
     import { page } from "$app/stores";
 
     import Editor from "$lib/components/bin/Editor.svelte";
-    import Bins from "$lib/components/bin/Bins.svelte";
+    import Info from "$lib/components/bin/Info.svelte";
 
     let codeEditor;
 </script>
@@ -20,7 +20,7 @@
         </div>
     </div>
     { #if $page.data.id }
-        <Bins user={$page.data} editor={codeEditor} />
+        <Info user={$page.data} editor={codeEditor} />
     {/if}
 </div>
 

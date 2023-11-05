@@ -1,4 +1,4 @@
-import IconIfy__SvelteComponent_ from "$lib/components/layout/IconIfy.svelte";
+import Icon from '@iconify/svelte';
 
 export default async(props: any) => {
 
@@ -38,10 +38,9 @@ export function setIcon(props: any) {
     const language: string = props.lang;
     switch(language) {
         case "js": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-js-official",
+                    icon: "vscode-icons:file-type-js-official",
                     width: "50px",
                     height: "50px"
                 }
@@ -49,10 +48,9 @@ export function setIcon(props: any) {
             break;
         }
         case "html": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-html",
+                    icon: "vscode-icons:file-type-html",
                     width: "50px",
                     height: "50px"
                 }
@@ -60,10 +58,9 @@ export function setIcon(props: any) {
             break;
         }
         case "css": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-css",
+                    icon: "vscode-icons:file-type-css",
                     width: "50px",
                     height: "50px"
                 }
@@ -71,10 +68,9 @@ export function setIcon(props: any) {
             break;
         }
         case "py": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-python",
+                    icon: "vscode-icons:file-type-python",
                     width: "50px",
                     height: "50px"
                 }
@@ -82,10 +78,9 @@ export function setIcon(props: any) {
             break;
         }
         case "java": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-java",
+                    icon: "vscode-icons:file-type-java",
                     width: "50px",
                     height: "50px"
                 }
@@ -93,10 +88,9 @@ export function setIcon(props: any) {
             break;
         }
         case "cpp": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-cpp",
+                    icon: "vscode-icons:file-type-cpp2",
                     width: "50px",
                     height: "50px"
                 }
@@ -104,10 +98,9 @@ export function setIcon(props: any) {
             break;
         }
         case "php": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-php",
+                    icon: "vscode-icons:file-type-php",
                     width: "50px",
                     height: "50px"
                 }
@@ -115,10 +108,9 @@ export function setIcon(props: any) {
             break;
         }
         case "rust": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-rust",
+                    icon: "vscode-icons:file-type-rust",
                     width: "50px",
                     height: "50px"
                 }
@@ -126,10 +118,9 @@ export function setIcon(props: any) {
             break;
         }
         case "sass": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-sass",
+                    icon: "vscode-icons:file-type-sass",
                     width: "50px",
                     height: "50px"
                 }
@@ -137,10 +128,9 @@ export function setIcon(props: any) {
             break;
         }
         case "md": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-markdown",
+                    icon: "vscode-icons:file-type-markdown",
                     width: "50px",
                     height: "50px"
                 }
@@ -148,10 +138,9 @@ export function setIcon(props: any) {
             break;
         }
         case "graphql": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-graphql",
+                    icon: "vscode-icons:file-type-graphql",
                     width: "50px",
                     height: "50px"
                 }
@@ -159,10 +148,9 @@ export function setIcon(props: any) {
             break;
         }
         case "json": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-json",
+                    icon: "vscode-icons:file-type-json",
                     width: "50px",
                     height: "50px"
                 }
@@ -170,10 +158,9 @@ export function setIcon(props: any) {
             break;
         }
         case "xml": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-xml",
+                    icon: "vscode-icons:file-type-xml",
                     width: "50px",
                     height: "50px"
                 }
@@ -181,10 +168,9 @@ export function setIcon(props: any) {
             break;
         }
         case "sql": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-sql",
+                    icon: "vscode-icons:file-type-sql",
                     width: "50px",
                     height: "50px"
                 }
@@ -192,10 +178,9 @@ export function setIcon(props: any) {
             break;
         }
         case "vue": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-vue",
+                    icon: "vscode-icons:file-type-vue",
                     width: "50px",
                     height: "50px"
                 }
@@ -203,10 +188,9 @@ export function setIcon(props: any) {
             break;
         }
         case "svelte": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-svelte",
+                    icon: "vscode-icons:file-type-svelte",
                     width: "50px",
                     height: "50px"
                 }
@@ -214,10 +198,9 @@ export function setIcon(props: any) {
             break;
         }
         case "ang": {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-angular",
+                    icon: "vscode-icons:file-type-angular",
                     width: "50px",
                     height: "50px"
                 }
@@ -225,10 +208,9 @@ export function setIcon(props: any) {
             break;
         }
         default: {
-            new IconIfy__SvelteComponent_({ target: binIcon,
+            new Icon({ target: binIcon,
                 props: {
-                    collection: "vscode-icons",
-                    name: "file-type-text",
+                    icon: "vscode-icons:file-type-text",
                     width: "50px",
                     height: "50px"
                 }

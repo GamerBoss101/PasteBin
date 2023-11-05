@@ -30,7 +30,7 @@
             <form method="POST" >
                 <h1 class="h2 mb-3">Register</h1>
                 <h5>Username</h5>
-                <input type="text" name="username" class="form-control" id="usernameInput" placeholder="Sir Blob">
+                <input type="text" name="username" class="form-control" id="usernameInput" placeholder="AwesomeTurtle">
                 <h5>Password</h5>
                 <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
                 <button class="w-100 btn btn-primary" type="submit">Create</button>

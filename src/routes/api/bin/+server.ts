@@ -10,6 +10,7 @@ export const POST: RequestHandler = async ({ request }) => {
     if(!request.headers.get("apiKey")) return new Response(JSON.stringify({ message: "Missing API Key" }), { status: 401 });
 
     const user = await users.getByApiKey(request.headers.get("apiKey"));
+
     if(!user) return new Response(JSON.stringify({ message: "Invalid API Key" }), { status: 401 });
 
     const { name, language, content } = await request.json();

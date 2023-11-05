@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import db from '$lib/ts/mongo/db';
 
+import { encoderChan } from '../baseEncoder/EncoderChan';
+
 db();
 
 const reqString = {
@@ -13,7 +15,8 @@ const userSchema = new mongoose.Schema({
     username: reqString,
     password: reqString,
     apiKey: reqString,
-    bins: Array
+    bins: Array,
+    images: Array,
 });
 
 export type UserSchema = {
@@ -22,6 +25,7 @@ export type UserSchema = {
     password: string;
     apiKey: string;
     bins: Array<string>;
+    images: Array<string>;
 }
 
 class User {
@@ -45,7 +49,7 @@ class User {
         let apiKey = this.makeId(32);
         await this.model.findByIdAndUpdate(
             { _id: Id },
-            { _id: Id, username, password, apiKey, bins: [] },
+            { _id: Id, username, password: encoderChan.hash(password), apiKey: encoderChan.encode(apiKey), bins: [] },
             this.upsert,
         );
         return await this.model.findById(Id);;
@@ -61,7 +65,7 @@ class User {
     }
 
     async getByApiKey(apiKey: string | null) {
-        return await this.model.findOne({ apiKey: apiKey });
+        return await this.model.findOne({ apiKey: encoderChan.encode(apiKey) });
     }
 
     async update(Id: string, username: string) {
@@ -85,6 +89,32 @@ class User {
         return await this.model.findByIdAndUpdate(
             { _id: Id },
             { $pull: { bins: binId } },
+            this.upsert,
+        );
+    }
+
+    async searchForImage(imageId: string): Promise<any> {
+        const users = await this.model.find();
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].images.includes(imageId)) return users[i];
+        }
+    }
+
+    async addImage(Id: string, imageId: string) {
+        const user = await this.get(Id);
+        if(!user) return;
+        if(user.images.includes(imageId)) return;
+        return await this.model.findByIdAndUpdate(
+            { _id: Id },
+            { $push: { images: imageId } },
+            this.upsert,
+        );
+    }
+
+    async removeImage(Id: string, imageId: string) {
+        return await this.model.findByIdAndUpdate(
+            { _id: Id },
+            { $pull: { images: imageId } },
             this.upsert,
         );
     }
