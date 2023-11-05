@@ -19,9 +19,11 @@
             </div>
         </div>
     </div>
-    { #if $page.data.id }
-        <Info user={$page.data} editor={codeEditor} />
-    {/if}
+    <section id="info">
+        { #if $page.data.id }
+            <Info user={$page.data} editor={codeEditor} />
+        {/if}
+    </section>
 </div>
 
 <style>

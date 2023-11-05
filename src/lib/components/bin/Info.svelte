@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import IconIfy from "../layout/IconIfy.svelte";
+    import Icon from "@iconify/svelte";
     import Bin from "./Bin.svelte";
     import Image from "./Image.svelte";
 
@@ -42,7 +43,7 @@
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <span  on:click={copyToClipboard} class="apikey">
                 {user.apiKey}
-                <IconIfy collection="ph" name="copy" width="20px" svg='<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><path fill="white" d="M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8Zm-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z"/></svg>' />
+                <Icon icon="ph:copy" width="20px" />
             </span>
         </div>
         <div class="col" style="text-align: center;">
@@ -61,30 +62,53 @@
     <div class="card-body">
         <div class="row">
             <div class="col">
-                <div class="card" style="background-color: var(--bg-color-light);">
-                    <h3 class="card-title">Bins</h3>
-                    <div class="card-body panel">
+                <h2 class="card-title">Bins</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Icon</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         { #each user.bins as bin }
                             <Bin id="{bin}" apikey="{user.apiKey}" CEditor={editor} />
                         {/each}
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
+        </div>
+        <div class="row">
             <div class="col">
-                <div class="card" style="background-color: var(--bg-color-light);">
-                    <h3 class="card-title">Images</h3>
-                    <div class="card-body panel">
-                        { #each user.images as images }
-                            <Image id="{images}" apikey="{user.apiKey}" />
+                <h2 class="card-title">Images</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Icon</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { #each user.images as image }
+                            <Image id="{image}" apikey="{user.apiKey}" />
                         {/each}
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
 <style>
+
+    table {
+        text-align: center;
+    }
+
     .card {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -102,14 +126,4 @@
         cursor: pointer;
         border-radius: 5px;
     }
-
-    .row > div {
-        padding: 10px;
-    }
-
-    .panel {
-        max-height: 500px;
-        overflow-y: scroll;
-    }
-
 </style>

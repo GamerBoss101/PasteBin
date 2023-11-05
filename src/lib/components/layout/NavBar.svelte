@@ -18,6 +18,9 @@
                     <a class="nav-link active" aria-current="page" href="/">Paste</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/#info">Info</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/api">API</a>
                 </li>
             </ul>

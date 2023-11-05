@@ -1,14 +1,9 @@
-// @ts-nocheck
-import users from '$lib/ts/mongo/user';
+import bins from '$lib/ts/mongo/bin';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
+    const bin = await bins.get(params.id);
+    if (!bin) return { status: 404 };
 
-    let user = null;
-    if (cookies.get('authKey', { path: '/' })) {
-        user = await users.get(cookies.get('authKey', { path: '/' }));
-        user.password = null;
-        return { id: user._id, username: user.username, apiKey: user.apiKey, bins: user.bins, binId: params.id };
-    }
-    return { id: null, username: null, apiKey: null, binId: params.id };
+    return { id: bin._id, name: bin.name, content: bin.content, status: 200, language: bin.language };
 }

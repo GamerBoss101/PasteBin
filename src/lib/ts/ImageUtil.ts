@@ -10,8 +10,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-png-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -20,8 +20,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-jpg-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -30,8 +30,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-jpg-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -40,8 +40,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-svg-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -50,8 +50,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-gif-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -60,8 +60,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-video-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -70,8 +70,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-music-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -80,8 +80,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-music-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -90,8 +90,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file-pdf-box",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;
@@ -100,8 +100,8 @@ export default function setIcon(props: any) {
             new Icon({ target: imageIcon,
                 props: {
                     icon: "mdi:file",
-                    width: "45px",
-                    height: "45px"
+                    width: "35px",
+                    height: "35px"
                 }
             });
             break;

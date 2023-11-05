@@ -7,9 +7,7 @@
     export let id: string;
     export let apikey: string;
 
-    let IMAGE: any;
-    let imageName: HTMLDivElement, imageIcon: HTMLDivElement, binContent: string, imageSelect: HTMLSelectElement;
-    let imageData: any;
+    let imageName: HTMLDivElement, imageIcon: HTMLDivElement, imageSize: number;
 
     onMount(() => {
         fetch(`/api/image/${id}`, {
@@ -19,8 +17,9 @@
                 "Content-Type": "application/json"
             }
         }).then(res => res.json()).then(data => {
-            imageData = data;
+            console.log(data);
             imageName.innerHTML = data._id;
+            imageSize = data.size;
             setLangIcon(data._id.split(".")[1]);
         });
     });
@@ -50,16 +49,30 @@
 
 </script>
 
-<div bind:this={IMAGE} class="image row">
-    <div bind:this={imageIcon} class="col"></div>
-    <div class="col">
+<tr>
+    <td>
+        <div bind:this={imageIcon} class="col"></div>
+    </td>
+    <td>
         <p bind:this={imageName} class="image-name"></p>
-    </div>
-    <div class="col" style="float: right;">
-        <button class="bg-success btn image-btn" on:click={openImage}>Open</button>
-        <button class="bg-danger btn image-btn" on:click={deleteImage}>Delete</button>
-    </div>
-</div>
+    </td>
+    <td>
+        {#if imageSize > 1000000000}
+            <p class="image-name" style="color: red;"><b>{`${(imageSize / 1000000000).toFixed(2)} GB`}</b></p>
+        {:else if imageSize > 1000000}
+            <p class="image-name" style="color: yellow;"><b>{`${(imageSize / 1000000).toFixed(2)} MB`}</b></p>
+        {:else if imageSize > 1000}
+            <p class="image-name" style="color: #00b35f;"><b>{`${(imageSize / 1000).toFixed(2)} KB`}</b></p>
+        {:else}
+            <p class="image-name" style="color: green;"><b>{`${imageSize} B`}</b></p>
+        {/if}
+    </td>
+
+    <td>
+        <button class="btn btn-success" on:click={openImage}>Open</button>
+        <button class="btn btn-danger" on:click={deleteImage}>Delete</button>
+    </td>
+</tr>
 
 <style>
 
@@ -70,34 +83,9 @@
         color: white;
     }
 
-    .image {
-        border-radius: 10px;
-        padding: 10px;
-        display: grid;
-        grid-template-columns: auto auto 1fr auto auto;
-        background-color: var(--bg-color);
-        margin-bottom: 10px;
-        overflow: hidden;
-    }
-
     .image-name {
         margin: auto;
         padding: 10px;
-        font-size: 15px;
+        font-size: 18px;
     }
-    
-    .image-name:hover {
-        cursor: pointer;
-    }
-
-    .image-btn {
-        margin: auto;
-    }
-
-    @media screen and (max-width: 600px) {
-        .image-name {
-            font-size: 16px;
-        }
-    }
-
 </style>

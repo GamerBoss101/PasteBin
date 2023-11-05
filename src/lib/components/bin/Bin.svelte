@@ -8,8 +8,7 @@
     export let apikey: string;
     export let CEditor: any;
 
-    let BIN: any;
-    let binName: HTMLDivElement, binIcon: HTMLDivElement, binContent: string, binSelect: HTMLSelectElement;
+    let binName: HTMLDivElement, binIcon: HTMLDivElement, binContent: string, binId: string;
     let binData: any;
 
     onMount(() => {
@@ -21,6 +20,7 @@
             }
         }).then(res => res.json()).then(data => {
             binData = data;
+            binId = data._id;
             binContent = data.content;
             binName.innerHTML = data.name;
             setLangIcon(data.language);
@@ -34,61 +34,60 @@
         });
     }
 
-    function exeCommand() {
-        switch(binSelect.value) {
-            case "1": {
-                CEditor.setEditor(binData._id, binData.name, binData.language, binData.content);
-                break;
-            }
-            case "2": {
-                fetch(`/api/bin/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "apiKey": apikey,
-                        "Content-Type": "application/json"
-                    }
-                }).then(res => res.json()).then(data => {
-                    location.reload();
-                });
-                break;
-            }
-            default: {
-                window.open(`/bin/${id}`);
-                break;
-            }
-        }
+    function openBin() {
+        window.open(`/bin/${id}`);
     }
 
+    function updateBtn() {
+        CEditor.setEditor(binData._id, binData.name, binData.language, binData.content);
+    }
+
+    function deleteBtn() {
+        fetch(`/api/bin/${id}`, {
+            method: "DELETE",
+            headers: {
+                "apiKey": apikey,
+                "Content-Type": "application/json"
+            }
+        }).then(res => res.json()).then(data => {
+            location.reload();
+        });
+    }
 
 </script>
 
-<div bind:this={BIN} class="bin row">
-    <div bind:this={binIcon} class="col"></div>
-    <div class="col">
+<tr>
+    <td>
+        <div bind:this={binIcon} class="bin-icon"></div>
+    </td>
+    <td>
+        <p class="bin-id">{binId}</p>
+    </td>
+    <td>
         <p bind:this={binName} class="bin-name"></p>
-    </div>
-    <div class="col"></div>
-    <div class="col">
-        <select bind:this={binSelect} class="bin-select">
-            <option value="0">Open</option>
-            <option value="1">Edit</option>
-            <option value="2">Delete</option>
-        </select>
-    </div>
-    <div class="col">
-        <button on:click={exeCommand} class="bin-btn">EXE</button>
-    </div>
-</div>
+    </td>
+    <td>
+        <button on:click={openBin} class="btn bg-success col">Open</button>
+        <button on:click={updateBtn} class="btn bg-warning col">Update</button>
+        <button on:click={deleteBtn} class="btn bg-danger col">Delete</button>
+    </td>
+</tr>
 
 <style>
-    .bin {
-        border-radius: 10px;
-        padding: 5px;
-        display: grid;
-        grid-template-columns: auto auto 1fr auto auto;
-        background-color: var(--bg-color);
-        margin-bottom: 10px;
-        overflow: hidden;
+
+    .btn {
+        color: white;
+        margin: auto;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+    }
+
+    .bin-id {
+        margin: auto;
+        padding: 10px;
+        font-size: 20px;
     }
 
     .bin-name {
@@ -99,47 +98,6 @@
     
     .bin-name:hover {
         cursor: pointer;
-    }
-
-    .bin-select {
-        margin: auto;
-        background-color: var(--bg-color-dark);
-        color: white !important;
-        border: 2px solid var(--bg-color-light);
-        width: 100%;
-        height: 100%;
-        padding: 5px;
-        font-size: 22px;
-        border-radius: 5px;
-    }
-
-    .bin-btn {
-        margin: auto;
-        background-color: var(--color-success);
-        color: white !important;
-        border: 2px solid var(--bg-color-light);
-        width: 100%;
-        min-width: 100px;
-        height: 100%;
-        font-size: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    .bin-btn:hover {
-        cursor: pointer;
-        background-color: #00723d;
-    }
-
-    @media screen and (max-width: 600px) {
-        .bin-name {
-            font-size: 16px;
-        }
-
-        .bin-select {
-            font-size: 18px;
-            min-width: 85px;
-        }
     }
 
 </style>

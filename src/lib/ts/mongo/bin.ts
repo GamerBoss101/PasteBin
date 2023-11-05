@@ -49,7 +49,7 @@ class Bin {
         );
         return await this.model.findById(Id);
     }
-    async get(Id: string | null): Promise<BinSchema[] | BinSchema> {
+    async get(Id: string | null): Promise<BinSchema> {
         if(!Id) return await this.model.find();
         return await this.model.findById(Id);
     }
