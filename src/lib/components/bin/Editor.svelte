@@ -73,6 +73,7 @@
             })
         }).then(res => res.json()).then(data => {
             if(data.missing) return alert(data.message + "\n" + data.missing.join(","));
+            else alert("Saved!");
         });
     }
 
@@ -89,6 +90,7 @@
         <div class="col">
             <select bind:this={langSelect} on:change={selectLanguage} class="form-select lang-select" aria-label="Default select example">
                 <option selected value="txt">Text</option>
+                <option value="img">Image</option>
                 <option value="html">HTML</option>
                 <option value="css">CSS</option>
                 <option value="js">JavaScript</option>
@@ -127,6 +129,8 @@
         background-color: var(--bg-color-dark);
         color: white !important;
         border: 2px solid var(--bg-color-light);
+        overflow-y: auto; /* Enable vertical scrolling */
+        max-height: 100px; /* Set a max height for the dropdown */
     }
 
     .btn {

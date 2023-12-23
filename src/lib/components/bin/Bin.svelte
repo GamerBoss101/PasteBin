@@ -68,7 +68,7 @@
     </td>
     <td>
         <button on:click={openBin} class="btn bg-success col">Open</button>
-        <button on:click={updateBtn} class="btn bg-warning col">Update</button>
+        <button on:click={updateBtn} class="btn bg-warning col">Edit</button>
         <button on:click={deleteBtn} class="btn bg-danger col">Delete</button>
     </td>
 </tr>

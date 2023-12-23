@@ -9,6 +9,7 @@ export default async(props: any) => {
     let parent: HTMLDivElement = props.parent;
 
     if(lang == "txt") Editor = await import("./editors/TxtEditor");
+    if(lang == "img") Editor = await import("./editors/TxtEditor");
     if(lang == "js") Editor = await import("./editors/JsEditor");
     if(lang == "html") Editor = await import("./editors/HtmlEditor");
     if(lang == "css") Editor = await import("./editors/CSSEditor");
