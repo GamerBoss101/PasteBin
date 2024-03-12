@@ -20,18 +20,19 @@ export const POST: RequestHandler = async ({ request }) => {
 
     if(!file) return new Response(JSON.stringify({ message: "Missing files" }), { status: 400 });
 
+    const dataOBJ = Object.fromEntries(data);
+
     try {
-        await fs.writeFileSync(`./images/${user._id}/${file.name}`, new Uint8Array(await file.arrayBuffer()), "base64");
+        await fs.writeFileSync(`./images/${user._id}/${file.name}`, Buffer.from(await (dataOBJ.file as Blob).arrayBuffer()), "base64");
     } catch (e) {
         
         await fs.mkdirSync(`./images/${user._id}`, { recursive: true });
 
         try {
-            await fs.writeFileSync(`./images/${user._id}/${file.name}`, new Uint8Array(await file.arrayBuffer()), "base64");
+            await fs.writeFileSync(`./images/${user._id}/${file.name}`, Buffer.from(await (dataOBJ.file as Blob).arrayBuffer()), "base64");
         } catch (e) {
             return new Response(JSON.stringify({ message: "Error saving image" }), { status: 500 });
         }
-
     }
 
     await users.addImage(user._id, file.name);

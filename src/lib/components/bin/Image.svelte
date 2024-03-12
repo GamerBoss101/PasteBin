@@ -20,7 +20,7 @@
             console.log(data);
             imageName.innerHTML = data._id;
             imageSize = data.size;
-            setLangIcon(data._id.split(".")[1]);
+            setLangIcon(data._id.split(".")[data._id.split(".").length - 1]);
         });
     });
 
