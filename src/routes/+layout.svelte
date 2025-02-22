@@ -30,7 +30,7 @@
 
 </svelte:head>
 
-<main class="h-fit flex flex-col dark:bg-surface-900">
+<main class="h-fit min-h-screen flex flex-col dark:bg-surface-900">
 	<NavBar title="THE BIN" items={navItems} />
 	{@render children()}
 </main>
