@@ -1,15 +1,18 @@
-import adapter from '@sveltejs/adapter-node';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: vitePreprocess(),
+	extensions: ['.svelte'],
+	tsconfigFile: "./tsconfig.json",
+	compilerOptions: {
+		enableSourcemap: true,
+	},
+	preprocess: [vitePreprocess({
+		sourceMap: true
+	})],
 	kit: {
-		adapter: adapter(),
-        csrf: {
-            checkOrigin: false,
-        }
+		adapter: adapter()
 	}
 };
-
 export default config;
