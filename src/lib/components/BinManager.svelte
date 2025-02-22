@@ -38,12 +38,6 @@
 					</tr>
 				{/each}
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="3">Total</td>
-					<td class="text-right">{bins.length} Elements</td>
-				</tr>
-			</tfoot>
 		</table>
 	</div>
 </div>
