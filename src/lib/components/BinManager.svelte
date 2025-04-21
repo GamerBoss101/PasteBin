@@ -13,7 +13,6 @@
 	</div>
 	<div class="table-wrap">
 		<table class="table caption-bottom">
-			<caption class="pt-4">A list of elements from the periodic table.</caption>
 			<thead>
 				<tr>
 					<th>Icon</th>
@@ -38,6 +37,7 @@
 					</tr>
 				{/each}
 			</tbody>
+			<!-- <caption class="pt-4">A list of elements from the periodic table.</caption> -->
 		</table>
 	</div>
 </div>

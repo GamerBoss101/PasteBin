@@ -11,7 +11,7 @@ export default class TxtEditor extends EditorView {
             parent: props.parent,
             state : EditorState.create({
                 doc: props.code ? props.code : '\n\n\n\n',
-                extensions: [ oneDark, basicSetup ],
+                extensions: [ basicSetup, keymap.of([indentWithTab]), oneDark ],
             })
         });
     }

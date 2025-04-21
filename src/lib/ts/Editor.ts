@@ -1,4 +1,6 @@
 import Icon from '@iconify/svelte';
+import { mount } from 'svelte';
+import ImageEditor from '$lib/components/ImageEditor.svelte';
 
 export default async(props: any) => {
 
@@ -9,6 +11,11 @@ export default async(props: any) => {
     let parent: HTMLDivElement = props.parent;
 
     Editor = await import("$lib/ts/editors/TxtEditor")
+
+    if(lang == "img") {
+        mount(ImageEditor, { target: parent });
+        return;
+    }
 
     if(lang == "txt") Editor = await import("./editors/TxtEditor");
     if(lang == "js") Editor = await import("./editors/JsEditor");

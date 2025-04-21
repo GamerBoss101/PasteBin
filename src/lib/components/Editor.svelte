@@ -3,6 +3,7 @@
     import { onMount } from "svelte";
     import CEditor from "$lib/ts/Editor";
 
+    let lang: string = "txt";
     let langSelect: HTMLSelectElement;
     let nameInput: HTMLInputElement;
     let editorHTML: HTMLDivElement;
@@ -10,7 +11,10 @@
 
     async function selectLanguage(event: any) {
         editorHTML.innerHTML = "";
-        console.log(event.target.value);     
+        console.log(event.target.value);
+
+        lang = event.target.value;
+
         editor = await CEditor({
             parent: editorHTML,
             language: event.target.value,
@@ -27,9 +31,14 @@
 
 <div class="card p-4 bg-neutral-200 dark:bg-neutral-900 shadow-md rounded-md flex-row space-y-5">
     <div class="grid grid-cols-3 lg:grid-cols-4 gap-4">
-        <input type="text" class="input h-fit dark:bg-neutral-900 bg-neutral-950 placeholder-white text-white" bind:this={nameInput} placeholder="Bin Name" />
+
+        { #if lang != "img" } 
+            <input type="text" class="input h-fit dark:bg-neutral-900 bg-neutral-950 placeholder-white text-white" bind:this={nameInput} placeholder="Bin Name" />
+        {/if}
+
         <select bind:this={langSelect} onchange={selectLanguage} class="select dark:bg-neutral-900 bg-neutral-950 placeholder-white text-white h-fit">
             <option selected value="txt">Text</option>
+            <option value="img">Image</option>
             <option value="html">HTML</option>
             <option value="css">CSS</option>
             <option value="js">JavaScript</option>
