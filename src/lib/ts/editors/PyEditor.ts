@@ -1,4 +1,4 @@
-import { oneDark } from "$lib/ts/EditorTheme.js";
+import { oneDark } from "$lib/ts/EditorTheme";
 
 import { EditorView, basicSetup } from "codemirror";
 import { keymap } from "@codemirror/view";

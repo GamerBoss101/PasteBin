@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { ArrowRightIcon as RightArrowIcon } from '@lucide/svelte';
     import { onMount } from "svelte";
     import CEditor from "$lib/ts/Editor";
 
@@ -19,7 +20,6 @@
     onMount(async() => {
         editor = await CEditor({
             parent: editorHTML,
-            language: "txt",
         });
     });
 
@@ -49,9 +49,9 @@
             <option value="graphql">Graphql</option>
         </select>
         <div class="col-span-1 lg:col-span-2 lg:grid lg:grid-cols-subgrid gap-4">
-            <button type="button" class="lg:col-start-2 w-full btn preset-filled font-semibold">
+            <button type="button" class=" lg:col-start-2 w-full btn preset-filled font-semibold">
                 <span>Save</span>
-                <span>&rarr;</span>
+                <RightArrowIcon size={18} />
             </button>
         </div>
     </div>

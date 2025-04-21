@@ -2,23 +2,12 @@
 	import '../app.css';
 	import NavBar from '$lib/components/NavBar.svelte';
 
-	import { onMount } from 'svelte';
-
 	let { children } = $props();
-
+	
 	let navItems = [
 		{ title: 'Info', href: '/info' },
-		{ title: 'API', href: '/api' },
+		{ title: 'API', href: '/api' }
 	];
-
-    onMount(() => {
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
-    });
-
 </script>
 
 <svelte:head>

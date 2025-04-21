@@ -8,6 +8,8 @@ export default async(props: any) => {
     let code: string = props.code;
     let parent: HTMLDivElement = props.parent;
 
+    Editor = await import("$lib/ts/editors/TxtEditor")
+
     if(lang == "txt") Editor = await import("./editors/TxtEditor");
     if(lang == "js") Editor = await import("./editors/JsEditor");
     if(lang == "html") Editor = await import("./editors/HtmlEditor");
@@ -27,7 +29,6 @@ export default async(props: any) => {
     if(lang == "vue") Editor = await import("./editors/VueEditor");
     if(lang == "svelte") Editor = await import("./editors/SvelteEditor");
     if(lang == "ang") Editor = await import("./editors/AngEditor");
-    if(Editor == null) Editor = await import("./editors/TxtEditor");
 
     return new Editor.default({ parent, code });
 };

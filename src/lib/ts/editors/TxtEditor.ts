@@ -1,4 +1,4 @@
-import { oneDark } from "$lib/ts/EditorTheme.js";
+import { oneDark } from "$lib/ts/EditorTheme";
 
 import { EditorView, basicSetup } from "codemirror";
 import { keymap } from "@codemirror/view";
@@ -11,7 +11,7 @@ export default class TxtEditor extends EditorView {
             parent: props.parent,
             state : EditorState.create({
                 doc: props.code ? props.code : '\n\n\n\n',
-                extensions: [ basicSetup, keymap.of([indentWithTab]), oneDark ],
+                extensions: [ oneDark, basicSetup ],
             })
         });
     }

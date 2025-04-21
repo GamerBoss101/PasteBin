@@ -1,25 +1,26 @@
-import { EditorView } from "@codemirror/view"
-import { HighlightStyle, syntaxHighlighting } from "@codemirror/language"
-import { tags as t } from "@lezer/highlight"
+import {EditorView} from "@codemirror/view"
+import type {Extension} from "@codemirror/state"
+import {HighlightStyle, syntaxHighlighting} from "@codemirror/language"
+import {tags as t} from "@lezer/highlight"
 
 // Using https://github.com/one-dark/vscode-one-dark-theme/ as reference for the colors
 
 const chalky = "#e5c07b",
-coral = "#e06c75",
-cyan = "#56b6c2",
-invalid = "#ffffff",
-ivory = "#abb2bf",
-stone = "#7d8799", // Brightened compared to original to increase contrast
-malibu = "#61afef",
-sage = "#98c379",
-whiskey = "#d19a66",
-violet = "#b542d6",
-darkBackground = "#21252b",
-highlightBackground = "#2c313a",
-background = "#282c34",
-tooltipBackground = "#353a42",
-selection = "#3E4451",
-cursor = "#528bff"
+  coral = "#e06c75",
+  cyan = "#56b6c2",
+  invalid = "#ffffff",
+  ivory = "#abb2bf",
+  stone = "#7d8799", // Brightened compared to original to increase contrast
+  malibu = "#61afef",
+  sage = "#98c379",
+  whiskey = "#d19a66",
+  violet = "#c678dd",
+  darkBackground = "#21252b",
+  highlightBackground = "#2c313a",
+  background = "#282c34",
+  tooltipBackground = "#353a42",
+  selection = "#3E4451",
+  cursor = "#528bff"
 
 /// The colors used in the theme, as CSS color strings.
 export const color = {
@@ -150,4 +151,4 @@ export const oneDarkHighlightStyle = HighlightStyle.define([
 
 /// Extension to enable the One Dark theme (both the editor theme and
 /// the highlight style).
-export const oneDark = [oneDarkTheme, syntaxHighlighting(oneDarkHighlightStyle)]
+export const oneDark: Extension = [oneDarkTheme, syntaxHighlighting(oneDarkHighlightStyle)];

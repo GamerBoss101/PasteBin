@@ -11,12 +11,11 @@
     const toggleMenu = () => (isOpen = !isOpen);
 </script>
 
-<nav class="sticky top-0 z-50 shadow-md bg-surface-100 dark:bg-neutral-900 text-black dark:text-white">
+<nav class="sticky top-0 z-50 shadow-md bg-surface-100 dark:bg-neutral-900 text-black dark:text-white p-2">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 p-2 font-semibold">
             <!-- Logo -->
             <div class="flex items-center space-x-2">
-                <img src="/favicon.png" alt="{title}" class="w-12" />
                 <h1 class="text-xl"><a href="/">{title}</a></h1>
             </div>
 
@@ -38,7 +37,6 @@
 
             <!-- Light Switch -->
             <div class="justify-self-end flex items-center gap-4">
-                <LightSwitch />
                 <Login />
             </div>
         </div>
